@@ -17,7 +17,7 @@ public class UserGroupProductColorPromotionRule extends AbstractPromotionRule im
     public float applyRule(ShoppingCart shoppingCart) {
         float discountedProductPrice = 0;
         float nonDiscountProductPrice = 0;
-        if (shoppingCart.getUser().isUserGroup(this.userGroup)) {
+        if (shoppingCart.getUser().isUserGroup(this.userGroup) && isNotExpired()) {
             for (Product product: shoppingCart.getProducts()
                  ) {
                 if (product.isColor(this.color)) {
@@ -34,7 +34,7 @@ public class UserGroupProductColorPromotionRule extends AbstractPromotionRule im
             }
 
         } else {
-            return -1;
+            return shoppingCart.getTotalPrice();
         }
     }
 }

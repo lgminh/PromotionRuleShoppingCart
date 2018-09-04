@@ -1,9 +1,7 @@
 package com.shoppingcart.ChainResponsibility;
 
-import com.shoppingcart.ChainResponsibility.BlackPromotionRule;
 import com.shoppingcart.PromotionRule;
 import com.shoppingcart.ShoppingCart;
-import com.shoppingcart.SilverPromotionRule;
 import com.shoppingcart.UserGroup;
 
 import java.util.Date;

@@ -13,15 +13,30 @@ public abstract class AbstractPromotionRule implements PromotionRuleInterface {
     protected float discount;
 
     public AbstractPromotionRule(Date toDate, Date fromDate, String color, UserGroup userGroup, float subTotal, float discount) {
-        this.toDate = toDate;
-        this.fromDate = fromDate;
-        this.color = color;
-        this.userGroup = userGroup;
-        this.subTotal = subTotal;
-        this.discount = discount;
+        try {
+            if (toDate.compareTo(fromDate) > 0) {
+                Exception exception = new Exception();
+                throw exception;
+            }
+            this.toDate = toDate;
+            this.fromDate = fromDate;
+            this.color = color;
+            this.userGroup = userGroup;
+            this.subTotal = subTotal;
+            this.discount = discount;
+        } catch (Exception e) {
+
+        }
+
+
     }
 
     public AbstractPromotionRule(){
 
+    }
+
+    public boolean isNotExpired() {
+        Date currentDate = new Date();
+        return toDate.compareTo(currentDate) >= 0  && currentDate.compareTo(fromDate) <= 0;
     }
 }

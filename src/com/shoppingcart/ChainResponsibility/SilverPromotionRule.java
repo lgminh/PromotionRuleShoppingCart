@@ -1,4 +1,9 @@
-package com.shoppingcart;
+package com.shoppingcart.ChainResponsibility;
+
+import com.shoppingcart.Product;
+import com.shoppingcart.PromotionRule;
+import com.shoppingcart.ShoppingCart;
+import com.shoppingcart.UserGroup;
 
 import java.util.Date;
 
