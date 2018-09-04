@@ -11,7 +11,6 @@ public class Main {
     public static void main(String[] args) {
         // write your code
         UnitTest unitTest = new UnitTest();
-//        unitTest.test();
         unitTest.PromotionRuleEvaluatorTester();
     }
 }

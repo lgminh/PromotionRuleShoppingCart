@@ -21,15 +21,8 @@ public class UnitTest {
         user.addProduct(new Product("Iphone Silver", 999, "Silver"));
         user.addProduct(new Product("Iphone Silver", 999, "Silver"));
         user.addProduct(new Product("Iphone Black", 899, "Black"));
-//        float totalPrice = user.getShoppingCart().getTotalPrice();
-//        PromotionRuleChain promotionRuleChain = new PromotionRuleChain();
-//        float totalPricePromotionRule = promotionRuleChain.applyPromotionRules(user.getShoppingCart());
-//        System.out.println("Before applying rule " + totalPrice);
-//        System.out.println("After applying rule " + totalPricePromotionRule);
-
         float totalPrice = shoppingCart.getTotalPrice();
         assertTrue("Wrong totalPrice before discount",totalPrice == 2897);
-
         AbstractPromotionRule promotionRule = new UserGroupProductColorPromotionRule(new Date(2018,1,1),
                 new Date(2018,10,1), "Black", UserGroup.GOLD, 1500, 50);
         float discountedPrice = promotionRule.applyRule(shoppingCart);
@@ -47,7 +40,6 @@ public class UnitTest {
         user.addProduct(new Product("Iphone Black", 899, "Black"));
         float totalPrice = shoppingCart.getTotalPrice();
         assertTrue("Wrong totalPrice before discount",totalPrice == 2897);
-
         PromotionRuleEvaluator promotionRuleEvaluator = new PromotionRuleEvaluator(shoppingCart);
         float discountedPrice  = promotionRuleEvaluator.evaluateRules();
         assertTrue("Wrong result !", discountedPrice == 2897);
