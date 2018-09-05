@@ -16,25 +16,20 @@ public class UserGroupProductColorPromotionRule extends AbstractPromotionRule im
     @Override
     public float applyRule(ShoppingCart shoppingCart) {
         float discountedProductPrice = 0;
-        float nonDiscountProductPrice = 0;
         if (shoppingCart.getUser().isUserGroup(this.userGroup) && isNotExpired()) {
             for (Product product: shoppingCart.getProducts()
                  ) {
-                if (product.isColor(this.color)) {
+                if (product.getColor() == this.color) {
                     discountedProductPrice += product.getPrice();
-                } else {
-                    nonDiscountProductPrice += product.getPrice();
+                }
+
+                if (discountedProductPrice > subTotal) {
+                    return discount;
                 }
             }
-
-            if (discountedProductPrice > this.subTotal) {
-                return discountedProductPrice - this.discount + nonDiscountProductPrice;
-            } else {
-                return discountedProductPrice + nonDiscountProductPrice;
-            }
-
+            return discountedProductPrice > subTotal ? discount : 0;
         } else {
-            return shoppingCart.getTotalPrice();
+            return 0;
         }
     }
 }

@@ -19,11 +19,12 @@ public class PromotionRuleEvaluator {
     }
 
     public float evaluateRules() {
+        float totalPrice = shoppingCart.getTotalPrice();
         float discountedPrice = 0;
         for (AbstractPromotionRule promotionRule: promotionRuleEvaluatorList
              ) {
-            discountedPrice = Math.min(promotionRule.applyRule(shoppingCart), shoppingCart.getTotalPrice());
+            discountedPrice += promotionRule.applyRule(shoppingCart);
         }
-        return discountedPrice;
+        return totalPrice - discountedPrice;
     }
 }
